@@ -1,3 +1,4 @@
+
 // AOC Runner
 // Author: Scoder12
 
@@ -10,10 +11,10 @@ process.on("unhandledRejection", error => {
   process.exit(1);
 });
 
-const formatFilename = day => {
+const formatFilename = (day, year) => {
   // You can customize this function to your liking
 
-  return day.toString().padStart(2, "0");
+  return year + "/" + day.toString().padStart(2, "0");
 };
 
 const formatRuntime = ms => {
@@ -63,8 +64,8 @@ const runPart = async (part, mod, data) => {
   }
 };
 
-const getData = async day => {
-  const fname = formatFilename(day) + ".txt";
+const getData = async (day, year) => {
+  const fname = formatFilename(day, year) + ".txt";
 
   let data;
   try {
@@ -79,11 +80,14 @@ const getData = async day => {
   return data;
 };
 
-const run = async (day, year = 2020) => {
-  console.log(`AOC ${year} Day ${day}`);
+const run = async (day, year) => {
+  if (typeof day !== 'number') return console.log('Please provide a valid day.');
+  if (typeof year !== 'number') return console.log('Please provide a valid year.');
 
-  const mod = require("./" + formatFilename(day));
-  const data = await getData(day);
+  console.log(`Advent Of Code ${year} Day ${day}`);
+
+  const mod = require(`./${formatFilename(day, year)}`);
+  const data = await getData(day, year);
 
   const part1Time = await runPart(1, mod, data);
   const part2Time = await runPart(2, mod, data);

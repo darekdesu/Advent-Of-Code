@@ -1,11 +1,11 @@
-### Advent Of Code 2020
+### Advent Of Code
 
-https://adventofcode.com/2020
+https://adventofcode.com
 
 ### Setup
-Update the day in `index.js`, for example:
+Update the day and year in `index.js`, for example:
 ```
-runner.run(2);
+runner.run(2, 2020);
 ```
 
 ### Run
